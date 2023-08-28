@@ -2,9 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "../style/Navbar.module.css";
 import useAuth from "../hooks/useAuth";
-import styles from "../style/Login.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { FaShoppingCart } from "react-icons/fa";
 
 function Navbar() {
   const { token, setToken, setUser, user } = useAuth();
@@ -15,38 +13,37 @@ function Navbar() {
     <>
       <ul>
         <li>
-          <NavLink activeclassname="active" to="/">
+          <NavLink activeclassname='active' to='/'>
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink activeclassname="active" to="/products">
+          <NavLink activeclassname='active' to='/products'>
             Products
           </NavLink>
         </li>
         {token ? (
           <li>
             <NavLink
-              activeclassname="active"
-              to="/login"
+              activeclassname='active'
+              to='/login'
               onClick={() => {
                 localStorage.removeItem("token");
                 setToken(localStorage.getItem("token"));
                 setUser({});
-              }}
-            >
+              }}>
               Logout
             </NavLink>
           </li>
         ) : (
           <>
             <li>
-              <NavLink activeclassname="active" to="/login">
+              <NavLink activeclassname='active' to='/login'>
                 Log In
               </NavLink>
             </li>
             <li>
-              <NavLink activeclassname="active" to="/register">
+              <NavLink activeclassname='active' to='/register'>
                 Register
               </NavLink>
             </li>
@@ -55,13 +52,13 @@ function Navbar() {
 
         {!user.isAdmin ? (
           <li>
-            <NavLink activeclassname="active" to="/cart">
-              <FontAwesomeIcon icon={faShoppingCart} />
+            <NavLink activeclassname='active' to='/cart'>
+              <FaShoppingCart />
             </NavLink>
           </li>
         ) : (
           <li>
-            <NavLink activeclassname="active" to="/admin/dashboard">
+            <NavLink activeclassname='active' to='/admin/dashboard'>
               Dashboard
             </NavLink>
           </li>
