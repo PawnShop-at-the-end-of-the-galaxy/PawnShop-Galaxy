@@ -1,16 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import {
-  faCheck,
-  faTimes,
-  faInfoCircle,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaCheck, FaTimes, FaInfoCircle } from "react-icons/fa";
 import { registerUser } from "../axios-services/users";
 import useAuth from "../hooks/useAuth";
 import styles from "../style/Register.module.css";
 import { useNavigate } from "react-router-dom";
 
-/*  
+/*
   validates userName and password. The username must start with a lower or uppercase letter after that it must follow by any six or 23 characters that can be lower or upper case letters, digits, hyphens or underscores.The password requires at least one lower case letter, one uppercase letter, one digit, and one special character and it can be anywhere from eight to twenty four characters.
 */
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{6,23}$/;
@@ -81,8 +76,7 @@ function Register() {
           <p className={styles.buttonContainer}>
             <button
               className={styles.submit}
-              onClick={() => navigate("/products")}
-            >
+              onClick={() => navigate("/products")}>
               <span></span>
               <span></span>
               <span></span>
@@ -96,8 +90,7 @@ function Register() {
           <p
             ref={errRef}
             className={errMsg ? styles.errmsg : styles.offscreen}
-            aria-live="assertive"
-          >
+            aria-live='assertive'>
             {errMsg}
           </p>
           <h1>Registration Form</h1>
@@ -117,7 +110,7 @@ function Register() {
                   password,
                   name,
                   shippingAddress,
-                  billingAddress
+                  billingAddress,
                 );
                 setSuccess(true);
                 localStorage.setItem("token", result.token);
@@ -139,45 +132,42 @@ function Register() {
                 errRef.current.focus();
                 //throw error;
               }
-            }}
-          >
+            }}>
             <div className={styles.user_box}>
               <input
-                type="text"
+                type='text'
                 value={username}
                 ref={userRef}
-                autoComplete="off"
+                autoComplete='off'
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}
                 required
                 aria-invalid={validUserName ? "false" : "true"}
-                aria-describedby="uidnote"
+                aria-describedby='uidnote'
                 onFocus={() => setUserNameFocus(true)}
                 onBlur={() => setUserNameFocus(false)}
               />
-              <label htmlFor="username">
+              <label htmlFor='username'>
                 Username:
                 <span className={validUserName ? styles.valid : styles.hide}>
-                  <FontAwesomeIcon icon={faCheck} />
+                  <FaCheck />
                 </span>
                 <span
                   className={
                     validUserName || !username ? styles.hide : styles.invalid
-                  }
-                >
-                  <FontAwesomeIcon icon={faTimes} />
+                  }>
+                  <FaTimes />
                 </span>
               </label>
               <p
-                id="uidnote"
+                id='uidnote'
                 className={
                   userNameFocus && username && !validUserName
                     ? styles.instructions
                     : styles.offscreen
-                }
-              >
-                <FontAwesomeIcon icon={faInfoCircle} />
+                }>
+                <FaInfoCircle />
                 6 to 24 characters.
                 <br />
                 Must begin with a letter.
@@ -188,36 +178,34 @@ function Register() {
             <div className={styles.user_box}>
               <input
                 value={password}
-                type="password"
+                type='password'
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
                 required
                 aria-invalid={validPwd ? "false" : "true"}
-                aria-describedby="pwdnote"
+                aria-describedby='pwdnote'
                 onFocus={() => setPwdFocus(true)}
                 onBlur={() => setPwdFocus(false)}
               />
-              <label htmlFor="password">
+              <label htmlFor='password'>
                 Password:
                 <span className={validPwd ? styles.valid : styles.hide}>
-                  <FontAwesomeIcon icon={faCheck} />
+                  <FaCheck />
                 </span>
                 <span
                   className={
                     validPwd || !password ? styles.hide : styles.invalid
-                  }
-                >
-                  <FontAwesomeIcon icon={faTimes} />
+                  }>
+                  <FaTimes />
                 </span>
               </label>
               <p
-                id="pwdnote"
+                id='pwdnote'
                 className={
                   pwdFocus && !validPwd ? styles.instructions : styles.offscreen
-                }
-              >
-                <FontAwesomeIcon icon={faInfoCircle} />
+                }>
+                <FaInfoCircle />
                 8 to 24 characters.
                 <br />
                 Must include uppercase and lowercase letters, a number and a
@@ -235,49 +223,46 @@ function Register() {
             </div>
             <div className={styles.user_box}>
               <input
-                type="password"
-                id="confirm_pwd"
+                type='password'
+                id='confirm_pwd'
                 onChange={(e) => setMatchPwd(e.target.value)}
                 required
                 aria-invalid={validMatch ? "false" : "true"}
-                aria-describedby="confirmnote"
+                aria-describedby='confirmnote'
                 onFocus={() => setMatchFocus(true)}
                 onBlur={() => setMatchFocus(false)}
               />
               <p
-                id="confirmnote"
+                id='confirmnote'
                 className={
                   matchFocus && !validMatch
                     ? styles.instructions
                     : styles.offscreen
-                }
-              >
-                <FontAwesomeIcon icon={faInfoCircle} />
+                }>
+                <FaInfoCircle />
                 Must match the first password input field.
               </p>
 
-              <label htmlFor="confirm_pwd">
+              <label htmlFor='confirm_pwd'>
                 Confirm Password:
                 <span
                   className={
                     validMatch && matchPwd ? styles.valid : styles.hide
-                  }
-                >
-                  <FontAwesomeIcon icon={faCheck} />
+                  }>
+                  <FaCheck />
                 </span>
                 <span
                   className={
                     validMatch || !matchPwd ? styles.hide : styles.invalid
-                  }
-                >
-                  <FontAwesomeIcon icon={faTimes} />
+                  }>
+                  <FaTimes />
                 </span>
               </label>
             </div>
             <div className={styles.user_box}>
               <input
                 value={name}
-                type="text"
+                type='text'
                 onChange={(e) => {
                   setName(e.target.value);
                 }}
@@ -288,7 +273,7 @@ function Register() {
             <div className={styles.user_box}>
               <input
                 value={shippingAddress}
-                type="text"
+                type='text'
                 onChange={(e) => {
                   setShippingAddress(e.target.value);
                 }}
@@ -299,7 +284,7 @@ function Register() {
             <div className={styles.user_box}>
               <input
                 value={billingAddress}
-                type="text"
+                type='text'
                 onChange={(e) => {
                   setBillingAddress(e.target.value);
                 }}
@@ -312,8 +297,7 @@ function Register() {
                 className={styles.submit}
                 disabled={
                   !validUserName || !validPwd || !validMatch ? true : false
-                }
-              >
+                }>
                 <span></span>
                 <span></span>
                 <span></span>
@@ -328,8 +312,7 @@ function Register() {
             <span className={styles.buttonContainer}>
               <button
                 className={styles.loginSubmit}
-                onClick={() => navigate("/login")}
-              >
+                onClick={() => navigate("/login")}>
                 Log in
               </button>
             </span>

@@ -9,10 +9,8 @@ function Footer({ APIHealth }) {
   return (
     <footer
       className={styles.footer_box}
-      style={{ position: pathname === "/login" ? "absolute" : "initial" }}
-    >
+      style={{ position: pathname === "/login" ? "absolute" : "fixed" }}>
       <p>Copyright ⓒ {year} </p>
-      {/* <p>API Status: {APIHealth}</p> */}
     </footer>
   );
 }
